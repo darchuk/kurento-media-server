@@ -252,7 +252,7 @@ main (int argc, char **argv)
   /* Start transport */
   transport->start ();
 
-  GST_INFO ("Kurento Media Server started");
+  GST_INFO ("Kurento Media Server started, ILYA DARCHUK VERSION");
 
   loop->run ();
 
