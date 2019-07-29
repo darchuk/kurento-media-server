@@ -91,6 +91,7 @@ checkThreads (float limit_percent)
   const int maxThreadsKms = (maxThreads * limit_percent);
   const int nThreads = getNumberOfThreads ();
 
+  std::cout << "Threads : " << nThreads << "Max threads: " << maxThreadsKms << std::endl;
   if (nThreads > maxThreadsKms) {
     std::ostringstream oss;
     oss << "Reached maximum threshold for number of threads: " << maxThreadsKms;
@@ -149,6 +150,7 @@ checkOpenFiles (float limit_percent)
   const int maxOpenFilesKms = (maxOpenFiles * limit_percent);
   const int nOpenFiles = getNumberOfOpenFiles ();
 
+  std::cout << "Filed opened: " << nOpenFiles << "Max open files: " << maxOpenFilesKms << std::endl;
   if (nOpenFiles > maxOpenFilesKms) {
     std::ostringstream oss;
     oss << "Reached maximum threshold for number of open files: "
@@ -177,11 +179,13 @@ void killServerOnLowResources (float limit_percent)
     GST_DEBUG ("MediaSet empty, checking resources");
 
     try {
+      std::cout << "Checking limits, current limit percent: " << limit_percent << std::endl;
       checkResources (limit_percent);
     } catch (KurentoException &e) {
       if (e.getCode() == NOT_ENOUGH_RESOURCES) {
         GST_ERROR ("Resources over the limit, server will be killed");
-        kill ( getpid(), SIGTERM );
+         std::cout << "Resources over the limit, server supposed to be killed, but we proceed: " << e.what() << std::endl;
+        //kill ( getpid(), SIGTERM );
       }
     }
   });

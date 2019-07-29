@@ -237,7 +237,8 @@ main (int argc, char **argv)
   sigaction(SIGTERM, &signalAction, nullptr);
   sigaction(SIGPIPE, &signalAction, nullptr);
 
-  GST_INFO ("Kurento Media Server version: %s", get_version () );
+
+  GST_INFO ("Kurento Media Server version ILYA DARCHUK VERSION: %s", get_version () );
 
   loadConfig (config, confFile, modulesConfigPath);
 
